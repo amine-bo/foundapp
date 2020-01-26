@@ -1,3 +1,3 @@
 # FoundApp
 
-1. npm cordova run android
+1. ionic cordova run android
