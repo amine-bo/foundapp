@@ -1,5 +1,7 @@
 {
   "name": "found-app",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }

@@ -1,0 +1,15 @@
+{
+  "home": {
+    "search": "Search",
+    "pets": "Pets",
+    "electronics": "Electronics",
+    "vehicles": "Vehicles",
+    "others": "Others",
+    "foundlost": "Found & Lost",
+    "found": "Found",
+    "lost": "Lost",
+    "sortby": "Sort by",
+    "most_recent": "Most recent",
+    "in": "in"
+  }
+}

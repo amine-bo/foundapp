@@ -1,0 +1,15 @@
+{
+  "home": {
+    "search": "Buscar",
+    "pets": "Mascotas",
+    "electronics": "Electrónica",
+    "vehicles": "Vehículos",
+    "others": "Otros",
+    "foundlost": "Encontrado y perdido",
+    "found": "Encontrado",
+    "lost": "Perdido",
+    "sortby": "Ordenar por",
+    "most_recent": "Más reciente",
+    "in": "en"
+  }
+}

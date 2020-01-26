@@ -1,0 +1,92 @@
+<ion-header style="--background: #000000;">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-item lines="none" slot="start">
+      <!-- <ion-icon name="contact" slot="start"></ion-icon> -->
+      <img src="/assets/logo_found.png" alt="" width="150" height="20" style="max-width:100%; height:auto;" />
+    </ion-item>
+    <ion-searchbar slot="end" mode="md" placeholder="{{ 'home.search' | translate }}" style="width: 80%;">
+    </ion-searchbar>
+  </ion-toolbar>
+  <ion-grid>
+    <ion-row style="background-color: #ffdf9a;">
+      <ion-col size="3">
+        <ion-tab-button tab="animales" (click)="clickMe($event)">
+          <i class="material-icons">pets</i>
+          <ion-label style="font-size: smaller;">{{ 'home.pets' | translate }}</ion-label>
+        </ion-tab-button>
+      </ion-col>
+      <ion-col size="3">
+        <ion-tab-button style="padding: 0px;" tab="animales" (click)="clickMe($event)">
+          <i class="material-icons">devices_other</i>
+          <ion-label style="font-size: smaller;">{{ 'home.electronics' | translate }}</ion-label>
+        </ion-tab-button>
+      </ion-col>
+      <ion-col size="3">
+        <ion-tab-button tab="animales" (click)="clickMe($event)">
+          <i class="material-icons">directions_car</i>
+          <ion-label style="font-size: smaller;">{{ 'home.vehicles' | translate }}</ion-label>
+        </ion-tab-button>
+      </ion-col>
+      <ion-col size="3">
+        <ion-tab-button tab="animales" (click)="clickMe($event)">
+          <i class="material-icons">more_horiz</i>
+          <ion-label style="font-size: smaller;">{{ 'home.others' | translate }}</ion-label>
+        </ion-tab-button>
+      </ion-col>
+    </ion-row>
+    <ion-row nowrap>
+      <ion-col auto>
+        <ion-item class="ion-no-padding">
+          <ion-select (ionChange)="updateTextHeader(foundLostSelect)" [(ngModel)]="foundLostSelect"
+            style="max-width: 100%; width: 100%; font-size: small;">
+            <ion-select-option *ngFor="let option of optionsFoundSelect" [value]="option.code">{{option.label}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+      <ion-col>
+        <ion-item class="ion-no-padding">
+          <ion-select [(ngModel)]="sortSelect" style="max-width: 100%; width: 100%; font-size: small;">
+            <ion-select-option *ngFor="let option of optionsSortSelect" [value]="option.code">{{option.label}}
+            </ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div style="display: inline-block;">
+    <ion-label style="font-size: small; font-weight: bold;">{{textSelectFoundLost}}
+      {{'home.in' | translate}}
+      {{geoAddress}}</ion-label>
+    <ion-label style="vertical-align: middle; font-size: smaller; font-weight: lighter; text-decoration: underline;
+       font-style: oblique; padding-left: 2rem;">
+      Change city
+    </ion-label>
+    <ion-icon style="font-size: smaller; vertical-align: middle;" name="sync"></ion-icon>
+  </div>
+</ion-header>
+
+<ion-content>
+  <ion-list class="center-desktop">
+    <div *ngFor="let card of cards">
+      <ion-item lines="none">
+        <ion-icon name="contact" slot="start" style="font-size: 50px;"></ion-icon>
+        <ion-label style="white-space: normal;">
+          <h3>{{card.title}}</h3>
+          <h4>{{card.date}}</h4>
+          <p>{{card.description}}</p>
+        </ion-label>
+      </ion-item>
+      <ion-slides pager="true" style="width: 80%;">
+        <ion-slide>
+          <img src="{{card.pictures[0]}}" width="80%" style="display:block; margin-left:auto; margin-right:auto;" />
+        </ion-slide>
+      </ion-slides>
+      <ion-item-divider>
+      </ion-item-divider>
+    </div>
+  </ion-list>
+</ion-content>

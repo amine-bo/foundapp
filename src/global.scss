@@ -24,3 +24,10 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+@import "../node_modules/material-design-icons-iconfont/dist/material-design-icons.css";
+
+
+.searchbar-input {
+    border-radius: 15px !important;
+    color: #000 !important;
+  }
