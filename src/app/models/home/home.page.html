@@ -42,7 +42,8 @@
         <ion-item class="ion-no-padding">
           <ion-select (ionChange)="updateTextHeader(foundLostSelect)" [(ngModel)]="foundLostSelect"
             style="max-width: 100%; width: 100%; font-size: small;">
-            <ion-select-option *ngFor="let option of optionsFoundSelect" [value]="option.code">{{option.label}}
+            <ion-select-option *ngFor="let option of optionsFoundSelect" [value]="option.code">
+              {{option.label | translate}}
             </ion-select-option>
           </ion-select>
         </ion-item>
@@ -50,7 +51,8 @@
       <ion-col>
         <ion-item class="ion-no-padding">
           <ion-select [(ngModel)]="sortSelect" style="max-width: 100%; width: 100%; font-size: small;">
-            <ion-select-option *ngFor="let option of optionsSortSelect" [value]="option.code">{{option.label}}
+            <ion-select-option *ngFor="let option of optionsSortSelect" [value]="option.code">
+              {{option.label | translate}}
             </ion-select-option>
           </ion-select>
         </ion-item>
@@ -58,14 +60,32 @@
     </ion-row>
   </ion-grid>
   <div style="display: inline-block;">
-    <ion-label style="font-size: small; font-weight: bold;">{{textSelectFoundLost}}
+    <ion-label style="font-size: small; font-weight: bold;">{{textSelectFoundLost | translate}}
       {{'home.in' | translate}}
       {{geoAddress}}</ion-label>
-    <ion-label style="vertical-align: middle; font-size: smaller; font-weight: lighter; text-decoration: underline;
+    <!-- <ion-searchbar list="autoSuggestCities" *ngIf="showSearchBar" [(ngModel)]="cityQueried" (ionChange)="getCities()"
+      (ionCancel)="clickedSearchIcon()" showCancelButton="always" type="search"
+      placeholder=" {{ 'home.search' | translate }}" autocomplete="on"
+      style="display: inline-block; font-size: smaller; min-width: 40%;">
+    </ion-searchbar> -->
+    <ion-auto-complete *ngIf="showSearchBar" slot="start" #citiesSearchBar
+      style="vertical-align: middle; display: inline-block; font-size: smaller; width: 80%;"
+      [options]="{showCancelButton:'always', debounce:'500'}" (ionCancel)="clickedSearchIcon()"
+      [dataProvider]="completeSearchCityService">
+    </ion-auto-complete>
+    <div *ngIf="!showSearchBar" style="display: inline-block; font-size: smaller;" (click)="clickedSearchIcon()">
+      <button style="vertical-align: middle; font-size: small; background-color: transparent; text-transform:none">
+        <ion-label style="vertical-align: middle; font-size: smaller; font-weight: lighter; text-decoration: underline;
        font-style: oblique; padding-left: 2rem;">
-      Change city
-    </ion-label>
-    <ion-icon style="font-size: smaller; vertical-align: middle;" name="sync"></ion-icon>
+          Change city
+        </ion-label>
+        <ion-icon style="font-size: smaller; vertical-align: middle;" name="sync"></ion-icon>
+      </button>
+    </div>
+    <button slot="end" *ngIf="showSearchBar" (click)="checkAndConfirmCity($event)"
+      style="display: inline-block; background-color: #ffdf9a; border-radius: 0.5rem;">
+      <ion-icon style="font-size: smaller; vertical-align: middle;" size="large" name="checkmark"></ion-icon>
+    </button>
   </div>
 </ion-header>
 
@@ -85,6 +105,10 @@
           <img src="{{card.pictures[0]}}" width="80%" style="display:block; margin-left:auto; margin-right:auto;" />
         </ion-slide>
       </ion-slides>
+      <ion-button (click)="sendShare(card.description, card.title, 
+      card.pictures[0], 'https://ionicframework.com/docs')">
+        <ion-icon slot="icon-only" name="share"></ion-icon>
+      </ion-button>
       <ion-item-divider>
       </ion-item-divider>
     </div>

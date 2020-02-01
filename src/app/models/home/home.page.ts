@@ -1,10 +1,13 @@
 import { Card } from './../../dto/card.model';
 import { ApiService } from './../../service/api.service';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { Geolocation } from '@ionic-native/geolocation/ngx';
 import { NativeGeocoder, NativeGeocoderOptions, NativeGeocoderResult } from '@ionic-native/native-geocoder/ngx';
-import { TranslateService } from '@ngx-translate/core';
+import { CompleteSearchCityService } from 'src/app/service/complete-search-city.service';
+import { AutoCompleteComponent } from 'ionic4-auto-complete';
+import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'home.page.html',
@@ -29,17 +32,22 @@ export class HomePage {
   geoLongitude: number;
   geoAccuracy: number;
   geoAddress: string;
+  isItemAvailable: boolean;
+  @ViewChild('citiesSearchBar', { static: false })
+  citiesSearchBar: AutoCompleteComponent;
 
-  constructor(private platform: Platform, private api: ApiService,
-    private nativeGeocoder: NativeGeocoder, private geolocation: Geolocation, private translate: TranslateService) {
+  constructor(private platform: Platform, private api: ApiService, private socialSharing: SocialSharing,
+    private nativeGeocoder: NativeGeocoder, private geolocation: Geolocation,
+    public completeSearchCityService: CompleteSearchCityService) {
     this.foundLostSelect = "foundlost";
     this.sortSelect = "recentDate";
+    this.isItemAvailable = false;
     this.optionsFoundSelect = [
-      { code: "foundlost", label: this.translate.instant('home.foundlost') },
-      { code: "found", label: this.translate.instant('home.found') },
-      { code: "lost", label: this.translate.instant('home.lost') }
+      { code: "foundlost", label: "home.foundlost" },
+      { code: "found", label: "home.found" },
+      { code: "lost", label: "home.lost" }
     ];
-    this.optionsSortSelect = [{ code: "recentDate", label: this.translate.instant('home.most_recent') },
+    this.optionsSortSelect = [{ code: "recentDate", label: "home.most_recent" },
     { code: "found", label: "Lalala" },
     { code: "lost", label: "Tkharbi9a" }];
     this.updateTextHeader(this.foundLostSelect);
@@ -60,6 +68,14 @@ export class HomePage {
 
   clickedSearchIcon() {
     this.showSearchBar = !this.showSearchBar;
+  }
+
+  checkAndConfirmCity(e: Event) {
+    let selected = this.citiesSearchBar.getSelection();
+    if (selected.length > 0) {
+      this.geoAddress = selected[0].split(",")[0];
+      this.showSearchBar = !this.showSearchBar;
+    }
   }
 
   updateTextHeader(selectedOption: string) {
@@ -87,6 +103,10 @@ export class HomePage {
       .catch((error: any) => {
         alert('Error getting location' + JSON.stringify(error));
       });
+  }
+
+  sendShare(message, subject, picture, url) {
+    this.socialSharing.share(message, subject, picture, url);
   }
 
   ionViewWillEnter() {
