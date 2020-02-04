@@ -1,4 +1,7 @@
 {
+  "tabs": {
+    "home": "Inicio"
+  },
   "home": {
     "search": "Buscar",
     "pets": "Mascotas",

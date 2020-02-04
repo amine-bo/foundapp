@@ -8,6 +8,10 @@ export class GlobalErrorHandler extends ErrorHandler {
   }
 
   handleError(error: any): void {
+    if(error.message.includes("suggestions is undefined")){
+
+    }else{
     super.handleError(error);
+    }
   }
 }

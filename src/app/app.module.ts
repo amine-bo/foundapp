@@ -1,3 +1,4 @@
+import { LoginPage } from './models/login/login.page';
 import { GlobalErrorHandler } from './errorHandler/globalerror.service';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -19,16 +20,19 @@ import { NativeGeocoder } from '@ionic-native/native-geocoder/ngx';
 import { GeoDbFreeModule } from 'wft-geodb-angular-client';
 import { AutoCompleteModule } from 'ionic4-auto-complete';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
+import { GlobalService } from './service/global.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MomentModule } from 'ngx-moment';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, "./assets/i18n/", ".json");
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, LoginPage],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AutoCompleteModule,
-    AppRoutingModule, BrowserAnimationsModule, HttpClientModule,
+  imports: [BrowserModule, IonicModule.forRoot(), AutoCompleteModule, FormsModule, ReactiveFormsModule,
+    AppRoutingModule, BrowserAnimationsModule, HttpClientModule, MomentModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -46,6 +50,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     SocialSharing,
     StatusBar,
     SplashScreen,
+    GlobalService,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: ErrorHandler, useClass: GlobalErrorHandler },
   ],

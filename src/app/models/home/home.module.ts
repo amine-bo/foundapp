@@ -7,6 +7,7 @@ import { TranslateModule } from '@ngx-translate/core';
 import { HomePage } from './home.page';
 import { MaterialModule } from './../../material.module';
 import { AutoCompleteModule } from 'ionic4-auto-complete';
+import { MomentModule } from 'ngx-moment';
 
 @NgModule({
   imports: [
@@ -15,6 +16,7 @@ import { AutoCompleteModule } from 'ionic4-auto-complete';
     FormsModule,
     MaterialModule,
     AutoCompleteModule,
+    MomentModule,
     ReactiveFormsModule,
     RouterModule.forChild([{ path: '', component: HomePage }]),
     TranslateModule.forChild()

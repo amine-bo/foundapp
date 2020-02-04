@@ -63,11 +63,6 @@
     <ion-label style="font-size: small; font-weight: bold;">{{textSelectFoundLost | translate}}
       {{'home.in' | translate}}
       {{geoAddress}}</ion-label>
-    <!-- <ion-searchbar list="autoSuggestCities" *ngIf="showSearchBar" [(ngModel)]="cityQueried" (ionChange)="getCities()"
-      (ionCancel)="clickedSearchIcon()" showCancelButton="always" type="search"
-      placeholder=" {{ 'home.search' | translate }}" autocomplete="on"
-      style="display: inline-block; font-size: smaller; min-width: 40%;">
-    </ion-searchbar> -->
     <ion-auto-complete *ngIf="showSearchBar" slot="start" #citiesSearchBar
       style="vertical-align: middle; display: inline-block; font-size: smaller; width: 80%;"
       [options]="{showCancelButton:'always', debounce:'500'}" (ionCancel)="clickedSearchIcon()"
@@ -83,7 +78,7 @@
       </button>
     </div>
     <button slot="end" *ngIf="showSearchBar" (click)="checkAndConfirmCity($event)"
-      style="display: inline-block; background-color: #ffdf9a; border-radius: 0.5rem;">
+      style="display: inline-block; background-color: rgb(255, 223, 154); border-radius: 0.5rem;">
       <ion-icon style="font-size: smaller; vertical-align: middle;" size="large" name="checkmark"></ion-icon>
     </button>
   </div>
@@ -96,7 +91,7 @@
         <ion-icon name="contact" slot="start" style="font-size: 50px;"></ion-icon>
         <ion-label style="white-space: normal;">
           <h3>{{card.title}}</h3>
-          <h4>{{card.date}}</h4>
+          <h4>{{card.date | amParse:'DD/MM/YYYY' | amLocale:currentLang | amDateFormat:'LLL'}}</h4>
           <p>{{card.description}}</p>
         </ion-label>
       </ion-item>
@@ -105,11 +100,29 @@
           <img src="{{card.pictures[0]}}" width="80%" style="display:block; margin-left:auto; margin-right:auto;" />
         </ion-slide>
       </ion-slides>
-      <ion-button (click)="sendShare(card.description, card.title, 
+      <ion-grid>
+        <ion-row class="ion-justify-content-center">
+          <ion-col size="auto">
+            <ion-button size="small" color="found" style="height: 100%;" (click)="sendShare(card.description, card.title, 
       card.pictures[0], 'https://ionicframework.com/docs')">
-        <ion-icon slot="icon-only" name="share"></ion-icon>
-      </ion-button>
-      <ion-item-divider>
+              <ion-icon slot="icon-only" name="information-circle-outline"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="auto">
+            <ion-button size="small" color="found" style="height: 100%;" (click)="sendShare(card.description, card.title, 
+      card.pictures[0], 'https://ionicframework.com/docs')">
+              <ion-icon slot="icon-only" name="chatboxes"></ion-icon>
+            </ion-button>
+          </ion-col>
+          <ion-col size="auto">
+            <ion-button size="small" color="found" style="height: 100%;" (click)="sendShare(card.description, card.title, 
+      card.pictures[0], 'https://ionicframework.com/docs')">
+              <ion-icon slot="icon-only" name="md-share"></ion-icon>
+            </ion-button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <ion-item-divider style="min-height: 5px;">
       </ion-item-divider>
     </div>
   </ion-list>

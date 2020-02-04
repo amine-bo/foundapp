@@ -32,3 +32,31 @@
     border-radius: 15px !important;
     color: #000 !important;
   }
+
+.ion-color-found{
+  /** found **/
+    --ion-color-base: #ffdf9a;
+    --ion-color-base-rgb: 255, 223, 154;
+    --ion-color-contrast: #000000;
+    --ion-color-contrast-rgb: 0, 0, 0;
+    --ion-color-shade: #ffd67d;
+    --ion-color-tint: #ffdf9a;
+}
+.ion-color-facebook{
+      /** facebook **/
+      --ion-color-base: #3b5998;
+      --ion-color-base-rgb: 59, 89, 152;
+      --ion-color-contrast: #ffffff;
+      --ion-color-contrast-rgb: 255, 255, 255;
+      --ion-color-shade: #3b5998;
+      --ion-color-tint: #3b5998;
+}
+.ion-color-google{
+  /** google **/
+--ion-color-base: #cc181e;
+--ion-color-base-rgb: 204, 24, 30;
+--ion-color-contrast: #ffffff;
+--ion-color-contrast-rgb: 255, 255, 255;
+--ion-color-shade: #cc181e;
+--ion-color-tint: #cc181e;
+}

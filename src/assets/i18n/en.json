@@ -1,4 +1,7 @@
 {
+  "tabs": {
+    "home": "Home"
+  },
   "home": {
     "search": "Search",
     "pets": "Pets",

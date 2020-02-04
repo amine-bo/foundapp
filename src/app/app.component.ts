@@ -1,3 +1,4 @@
+import { GlobalService } from './service/global.service';
 import { Component } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
@@ -27,7 +28,8 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    private translate: TranslateService
+    private translate: TranslateService,
+    public globalService: GlobalService
   ) {
     this.initializeApp();
     this.platform
