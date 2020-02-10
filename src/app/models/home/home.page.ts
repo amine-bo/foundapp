@@ -8,6 +8,7 @@ import { CompleteSearchCityService } from 'src/app/service/complete-search-city.
 import { AutoCompleteComponent } from 'ionic4-auto-complete';
 import { SocialSharing } from '@ionic-native/social-sharing/ngx';
 import { TranslateService } from '@ngx-translate/core';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-tab1',
@@ -40,7 +41,7 @@ export class HomePage {
 
   constructor(private platform: Platform, private api: ApiService, private socialSharing: SocialSharing,
     private nativeGeocoder: NativeGeocoder, private geolocation: Geolocation, public translate: TranslateService,
-    public completeSearchCityService: CompleteSearchCityService) {
+    public completeSearchCityService: CompleteSearchCityService, public menuCtrl: MenuController) {
     this.foundLostSelect = "foundlost";
     this.sortSelect = "recentDate";
     this.isItemAvailable = false;
@@ -54,6 +55,7 @@ export class HomePage {
     { code: "lost", label: "Tkharbi9a" }];
     this.updateTextHeader(this.foundLostSelect);
     this.currentLang = this.translate.currentLang;
+    this.menuCtrl.enable(true, "sideOptionsMenu");
   }
 
   ngOnInit() {

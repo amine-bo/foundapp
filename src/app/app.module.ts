@@ -1,4 +1,4 @@
-import { LoginPage } from './models/login/login.page';
+import { LoginPageModule } from './models/login/login.module';
 import { GlobalErrorHandler } from './errorHandler/globalerror.service';
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -29,10 +29,10 @@ export function HttpLoaderFactory(http: HttpClient) {
 }
 
 @NgModule({
-  declarations: [AppComponent, LoginPage],
+  declarations: [AppComponent],
   entryComponents: [],
   imports: [BrowserModule, IonicModule.forRoot(), AutoCompleteModule, FormsModule, ReactiveFormsModule,
-    AppRoutingModule, BrowserAnimationsModule, HttpClientModule, MomentModule,
+    AppRoutingModule, BrowserAnimationsModule, HttpClientModule, MomentModule, LoginPageModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

@@ -23,17 +23,7 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../models/tab2/tab2.module').then(m => m.Tab2PageModule)
-          }
-        ]
-      },
-      {
-        path: 'tab3',
-        children: [
-          {
-            path: '',
-            loadChildren: () =>
-              import('../models/tab3/tab3.module').then(m => m.Tab3PageModule)
+              import('../models/report/report.module').then(m => m.ReportPageModule)
           }
         ]
       },

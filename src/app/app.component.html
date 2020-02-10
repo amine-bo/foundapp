@@ -1,9 +1,8 @@
 <ion-app>
   <ion-split-pane contentId="main-content">
-    <ion-menu contentId="main-content" enable-menu-with-back-views="true" type="overlay">
-      <ion-header *ngIf="globalService.isUserLogged">
+    <ion-menu menu-id="sideOptionsMenu" contentId="main-content" enable-menu-with-back-views="true" type="overlay">
+      <ion-header>
         <ion-toolbar>
-          <ion-back-button></ion-back-button>
           <ion-title>Menu</ion-title>
         </ion-toolbar>
       </ion-header>
@@ -18,7 +17,7 @@
             </ion-item>
           </ion-menu-toggle>
         </ion-list>
-        <app-login *ngIf="!globalService.isUserLogged"></app-login>
+        <app-login [isSideMenu]=true *ngIf="!globalService.isUserLogged"></app-login>
       </ion-content>
     </ion-menu>
     <ion-router-outlet id="main-content"></ion-router-outlet>

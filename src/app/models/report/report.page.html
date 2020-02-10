@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Report lost or found
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="globalService.isUserLogged">
+  </div>
+  <app-login *ngIf="!globalService.isUserLogged"></app-login>
+</ion-content>
