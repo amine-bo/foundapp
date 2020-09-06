@@ -26,3 +26,4 @@ Open app.scss and add the following:
 
 6. npm install --save moment ngx-moment
 7. ng add @angular/material
+8. ionic cordova run android (para deploy en móvil android)
